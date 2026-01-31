@@ -24,3 +24,17 @@ export async function login(email: string, password: string) {
     if (!res.ok) throw new Error(JSON.stringify(data));
     return data;
   }
+
+export async function listProducts(token: string) {
+  const res = await fetch(`${BASE_URL}/api/products/`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`,
+    },
+  });
+
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(JSON.stringify(data));
+  return data;
+}

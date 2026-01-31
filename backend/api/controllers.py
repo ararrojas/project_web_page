@@ -5,6 +5,12 @@ from rest_framework.exceptions import ValidationError
 from django.utils import timezone
 from django.contrib.auth import authenticate
 
+def get_user_by_id(user_id: int) -> User:
+    try:
+        return User.objects.get(id=user_id)
+    except User.DoesNotExist:
+        raise ValidationError("User not found")
+
 def signup(user_data_mapper: UserDataMapper) -> tuple[User, str]:
     old_user = User.objects.filter(email=user_data_mapper.email).first()
     if old_user:

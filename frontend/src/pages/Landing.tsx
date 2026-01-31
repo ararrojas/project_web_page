@@ -6,10 +6,13 @@ type Props = { onAuthSuccess: (token: string) => void };
 
 export function LandingPage({ onAuthSuccess }: Props) {
   const [isSignUp, setIsSignUp] = useState(false);
-  const [name, setName] = useState("");    
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [mode, setMode] = useState<"default" | "forgot">("default");
+  const [forgotEmail, setForgotEmail] = useState("");
+  const [forgotMessage, setForgotMessage] = useState<string | null>(null);
 
 
   const onSignUp = async () => {
@@ -21,13 +24,13 @@ export function LandingPage({ onAuthSuccess }: Props) {
       setEmail("");
       setPassword("");
       navigate("/homepage");
-  
+
     } catch (e) {
       console.error("Error during signup:", e);
       setName("");
       setEmail("");
       setPassword("");
-  
+
     }
   };
   const onLogIn = async () => {
@@ -44,26 +47,85 @@ export function LandingPage({ onAuthSuccess }: Props) {
     }
   };
 
+  const onForgotSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setForgotMessage(null);
+    setForgotMessage("If the email exists, we will send you instructions.");
+    setForgotEmail("");
+  };
+
   return (
     <div className={`container ${isSignUp ? "right-panel-active" : ""}`} id="container">
       <div className="form-container sign-up-container">
         <form autoComplete="off">
           <h1>Create Account</h1>
-          <input type="text" autoComplete="off" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)}/>
-          <input type="email" autoComplete="off" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-          <input type="password" autoComplete="off" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+          <input type="text" autoComplete="off" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
+          <input type="email" autoComplete="off" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input type="password" autoComplete="off" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
           <button type="button" onClick={onSignUp}>Sign Up</button>
         </form>
       </div>
 
       <div className="form-container sign-in-container">
-        <form onSubmit={(e) => {e.preventDefault(); onLogIn()}} autoComplete="off">
-          <h1>Sign in</h1>
-          <input type="email" autoComplete="off" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-          <input type="password" autoComplete="off" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-          <a href="#">Forgot your password?</a>
-          <button type="submit" onClick={onLogIn}>Sign In</button>
-        </form>
+        {mode === "forgot" ? (
+          <form onSubmit={onForgotSubmit} autoComplete="off">
+            <h2>Forgot password</h2>
+            <input
+              type="email"
+              autoComplete="off"
+              placeholder="Email"
+              value={forgotEmail}
+              onChange={(e) => setForgotEmail(e.target.value)}
+            />
+            <div style={{ minHeight: 24, marginTop: 12, marginBottom: 12 }}>
+              {forgotMessage && <p style={{ margin: 0 }}>{forgotMessage}</p>}
+            </div>
+            {!forgotMessage ? (
+              <button type="submit">Send</button>
+            ) : (
+              <button
+                type="button"
+                onClick={() => {
+                  setMode("default");
+                  setForgotMessage(null);
+                  setForgotEmail("");
+                }}
+              >
+                Back
+              </button>
+            )}
+          </form>
+        ) : (
+          <form onSubmit={(e) => { e.preventDefault(), onLogIn() }} autoComplete="off">
+            <h1>Log in</h1>
+            <input
+              type="email"
+              autoComplete="off"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              autoComplete="current-password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setMode("forgot");
+                setForgotEmail(email);
+                setForgotMessage(null);
+              }}
+            >
+              Forgot your password?
+            </a>
+            <button type="submit">Log In</button>
+          </form>
+        )}
       </div>
 
       <div className="overlay-container">
@@ -72,7 +134,7 @@ export function LandingPage({ onAuthSuccess }: Props) {
             <h1>Welcome Back!</h1>
             <p>To keep connected with us please login with your personal info</p>
             <button className="ghost" type="button" onClick={() => setIsSignUp(false)}>
-              Sign In
+              Log In
             </button>
           </div>
           <div className="overlay-panel overlay-right">
