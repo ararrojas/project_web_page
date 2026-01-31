@@ -1,11 +1,13 @@
 import "./App.css";
-import { useState } from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { LandingPage } from "./pages/Landing";
-import { DashboardLayout } from "./pages/Dashboard";
+import Dashboard from "./pages/Dashboard";
 import ProductsList from "./pages/ProductsList";
 import { Homepage } from "./pages/Homepage";
+import { About } from "./pages/About";
 
+type Props = { onLogout: () => void; isAuth: boolean };
 
 function AppRoutes() {
   const [token, setToken] = useState<string | null>(localStorage.getItem("token"));
@@ -23,21 +25,19 @@ function AppRoutes() {
 
   return (
     <Routes>
-      <Route
-        path="/"
-        element={isAuth ? <Navigate to="/homepage" replace /> : <LandingPage onAuthSuccess={onAuthSuccess} />}
-      />
+      <Route path="/login" element={<LandingPage onAuthSuccess={onAuthSuccess} />} />
+      <Route element={<Dashboard onLogout={onLogout} isAuth={isAuth} />}>
+        {/* Public (siempre accesibles) */}
+        <Route path="/" element={<Homepage />} />
+        <Route path="/about" element={<About />} />
 
-      <Route
-        path="/homepage"
-        element={isAuth ? <DashboardLayout onLogout={onLogout} /> : <Navigate to="/" replace />}
-      >
-        <Route index element={<Homepage onLogout={onLogout} />} />
-        <Route path="products" element={<ProductsList />} />
-        <Route path="orders" element={<div style={{ padding: 24 }}>Orders (TODO)</div>} />
+        {/* Private (requieren auth) */}
+        <Route path="/products" element={isAuth ? <ProductsList /> : <Navigate to="/login" replace />} />
+        <Route path="/orders" element={isAuth ? <div style={{ padding: 24 }}>Orders (TODO)</div> : <Navigate to="/login" replace />} />
+
+        {/* Catch all */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
-
-      <Route path="*" element={<Navigate to={isAuth ? "/homepage" : "/"} replace />} />
     </Routes>
   );
 }

@@ -56,7 +56,7 @@ body.homepage-body #root {
     min-height: 100vh;
 }
 
-.toast {
+.homepage-modal{
     position: absolute;
     inset: 0;
     left: 300px;
@@ -65,30 +65,32 @@ body.homepage-body #root {
     background: rgba(0, 0, 0, 0.6);
     z-index: 10;
     transition: opacity 1200ms ease, background 1400ms ease;
-}
-
-.toast.is-visible {
-    background: rgba(0, 0, 0, 0.6);
-    opacity: 1;
-}
-
-.toast>* {
-    width: calc(100vw - 300px);
-    padding: 200px;
-    color: #fff;
-    text-align: justify;
-    line-height: 3;
-    font-size: 1.1rem;
+    padding: 100px;
+    color: #FCFCFA;
+    font-weight: 400;
+    font-size: 1.5rem;
     letter-spacing: 0.05em;
     font-weight: 400;
-    opacity: 0;
-    transition: opacity 900ms ease;
+    font-family: Zapfino, "Apple Chancery", "Snell Roundhand", cursive;
 }
 
-.toast.is-visible>* {
+.toast {
+    position: absolute;
+    text-align: justify;
+    inset: 0;
+    left: 300px;
+    display: grid;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 10;
+    transition: opacity 1200ms ease, background 1400ms ease;
+    color: #FCFCFA;
+    padding: 150px;
+    font-size: 1rem;
+    letter-spacing: 0.08rem;
+    font-weight: 400;
     opacity: 1;
+    line-height: 3;
 }
-
 
 .layout .content {
     margin-left: 300px;

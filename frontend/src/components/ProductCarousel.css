@@ -1,0 +1,53 @@
+.carousel {
+    width: 100%;
+  }
+  
+  .carousel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  
+  .carousel-btn {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+  }
+  
+  .carousel-dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    border: 1px solid #999;
+    background: transparent;
+    cursor: pointer;
+  }
+  .dot.active {
+    background: #333;
+    border-color: #333;
+  }
+  
+  .carousel-viewport {
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  .carousel-track {
+    display: flex;
+    transition: transform 450ms ease;
+    will-change: transform;
+  }
+  
+  .carousel-slide {
+    min-width: 100%;
+  }
