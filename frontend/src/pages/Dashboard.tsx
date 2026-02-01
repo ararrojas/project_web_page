@@ -49,6 +49,16 @@ export default function Dashboard({ onLogout, isAuth }: Props) {
                 </li>
 
                 {isAuth ? (
+                  <>
+                  <li className="menu-item sub-menu">
+                  <Link to="/overview">
+                    <span className="menu-icon">
+                    <i className="ri-search-line"></i>
+                    </span>
+                    <span className="menu-title">Overview</span>
+                  </Link>
+                </li>
+
                   <li className={`menu-item sub-menu ${openMenus.products ? "open" : ""}`}>
                     <a
                       href="#"
@@ -69,18 +79,20 @@ export default function Dashboard({ onLogout, isAuth }: Props) {
                     <div className="sub-menu-list">
                       <ul>
                         <li className="menu-item">
-                          <Link to="/products">
-                            <span className="menu-title">Catalog</span>
+                          <Link to="/best_sellers">
+                            <span className="menu-title">Best Sellers</span>
+                            <i className="ri-star-line " style={{ color: "#facc15" }}></i>
                           </Link>
                         </li>
                         <li className="menu-item">
-                          <Link to="/orders">
-                            <span className="menu-title">Orders</span>
+                          <Link to="/catalog">
+                            <span className="menu-title">Catalog</span>
                           </Link>
                         </li>
                       </ul>
                     </div>
                   </li>
+                  </>
                 ) : (
                   <li className="menu-item sub-menu">
                     <Link to="/login">

@@ -13,6 +13,7 @@ export function LandingPage({ onAuthSuccess }: Props) {
   const [mode, setMode] = useState<"default" | "forgot">("default");
   const [forgotEmail, setForgotEmail] = useState("");
   const [forgotMessage, setForgotMessage] = useState<string | null>(null);
+  const [authError, setAuthError] = useState<string | null>(null);
 
 
   const onSignUp = async () => {
@@ -27,12 +28,19 @@ export function LandingPage({ onAuthSuccess }: Props) {
 
     } catch (e) {
       console.error("Error during signup:", e);
-      setName("");
-      setEmail("");
-      setPassword("");
+      const message = e instanceof Error ? e.message : String(e);
+      try {
+        const parsed = JSON.parse(message);
+        setAuthError(message.replace(/.*string='([^']+)'.*/, "$1"));
+      } catch {
+        setAuthError(String(message ?? ""));
+        setName("");
+        setEmail("");
+        setPassword("");
 
-    }
-  };
+      }
+    };
+  }
   const onLogIn = async () => {
     try {
       const data = await login(email, password);
@@ -63,6 +71,11 @@ export function LandingPage({ onAuthSuccess }: Props) {
           <input type="email" autoComplete="off" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
           <input type="password" autoComplete="off" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
           <button type="button" onClick={onSignUp}>Sign Up</button>
+          {authError && (
+            <p style={{ color: "crimson", margin: "10px 0 0" }}>
+              {authError}
+            </p>
+          )}
         </form>
       </div>
 

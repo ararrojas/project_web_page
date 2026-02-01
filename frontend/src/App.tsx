@@ -3,9 +3,11 @@ import React, { useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { LandingPage } from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
-import ProductsList from "./pages/ProductsList";
+import BestSellersList from "./pages/BestSellersList";
 import { Homepage } from "./pages/Homepage";
 import { About } from "./pages/About";
+import Overview from "./pages/Overview";
+import { CatalogList } from "./pages/CatalogList";
 
 type Props = { onLogout: () => void; isAuth: boolean };
 
@@ -30,11 +32,10 @@ function AppRoutes() {
         {/* Public (siempre accesibles) */}
         <Route path="/" element={<Homepage />} />
         <Route path="/about" element={<About />} />
-
         {/* Private (requieren auth) */}
-        <Route path="/products" element={isAuth ? <ProductsList /> : <Navigate to="/login" replace />} />
-        <Route path="/orders" element={isAuth ? <div style={{ padding: 24 }}>Orders (TODO)</div> : <Navigate to="/login" replace />} />
-
+        <Route path="/overview" element={isAuth ? <Overview /> : <Navigate to="/login" replace />} />
+        <Route path="/best_sellers" element={isAuth ? <BestSellersList /> : <Navigate to="/login" replace />} />
+        <Route path="/catalog" element={isAuth ? <CatalogList /> : <Navigate to="/login" replace />} />
         {/* Catch all */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>

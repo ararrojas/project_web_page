@@ -76,6 +76,7 @@ body.homepage-body #root {
 
 .toast {
     position: absolute;
+    overflow-y: auto; 
     text-align: justify;
     inset: 0;
     left: 300px;

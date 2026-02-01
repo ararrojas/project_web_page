@@ -1,8 +1,8 @@
 import "./ProductCard.css";
 export default function ProductCard({ product, imageSrc }: { product: any, imageSrc: string }) {
     return (
-        <div className="container">
-            <div className="grid">
+        <div className="card-container">
+            <div className="card-grid">
                 <div className="img">
                     <img className="product-image" src={imageSrc} alt={product?.name} />
                 </div>

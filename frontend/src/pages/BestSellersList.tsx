@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { listProducts } from "../api";
+import { listBestSellers } from "../api";
 import ProductCarousel from "../components/ProductCarousel";
 
-export default function ProductsList() {
+export default function BestSellersList() {
   const [products, setProducts] = useState<any[]>([]);
   const [error, setError] = useState<string | null>(null);
 
@@ -13,7 +13,7 @@ export default function ProductsList() {
       return;
     }
 
-    listProducts(token)
+    listBestSellers(token)
       .then(setProducts)
       .catch((e) => setError(e.message));
   }, []);
