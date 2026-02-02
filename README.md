@@ -49,8 +49,20 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-Run the API server:
+Management commands (seed/demo data)
 
+Run commands from `backend/` with the virtualenv activated:
+
+Create the 4 “Best Seller” products:
+```bash
+python manage.py create_best_sellers
+```
+And then to create more products:
+```bash
+python manage.py fetch_products
+```
+
+Run the API server:
 ```bash
 python manage.py runserver
 ```
@@ -89,24 +101,7 @@ Authorization: Token <token>
 
 ---
 
-## Management commands (seed/demo data)
-
-Run commands from `backend/` with the virtualenv activated:
-
-```bash
-cd backend
-source .venv/bin/activate
-```
-
-Create the 4 “Best Seller” products:
-
-```bash
-python manage.py create_best_sellers
-```
-
-And then to create more products:
-
-```bash
-python manage.py fetch_products
-```
-
+## Note:
+Still ongoing features:
+- Product updates (PUT/PATCH endpoints)
+- Overview page (backend JSON works; UI still cooking)
