@@ -15,8 +15,7 @@ class Command(BaseCommand):
             df_raw = pd.DataFrame(data)
 
             tea_types = ["Green Tea", "Red Tea", "Black Tea", "Oolong Tea", "White Tea", "Matcha"]
-            
-            Product.objects.all().delete()
+    
             
             products_to_create = []
             for i, row in df_raw.iterrows():

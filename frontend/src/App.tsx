@@ -29,10 +29,10 @@ function AppRoutes() {
     <Routes>
       <Route path="/login" element={<LandingPage onAuthSuccess={onAuthSuccess} />} />
       <Route element={<Dashboard onLogout={onLogout} isAuth={isAuth} />}>
-        {/* Public (siempre accesibles) */}
+        {/* Public */}
         <Route path="/" element={<Homepage />} />
         <Route path="/about" element={<About />} />
-        {/* Private (requieren auth) */}
+        {/* Private */}
         <Route path="/overview" element={isAuth ? <Overview /> : <Navigate to="/login" replace />} />
         <Route path="/best_sellers" element={isAuth ? <BestSellersList /> : <Navigate to="/login" replace />} />
         <Route path="/catalog" element={isAuth ? <CatalogList /> : <Navigate to="/login" replace />} />
