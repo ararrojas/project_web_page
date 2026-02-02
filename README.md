@@ -1,4 +1,4 @@
-# BackToSoil (Django + Vite)
+# BackToSoil 🌱
 
 Fullstack project:
 - **Backend**: Django + Django REST Framework (Token Auth)
@@ -76,7 +76,7 @@ Backend base URL: `http://127.0.0.1:8000/`
 From the repository root:
 
 ```bash
-cd frontend
+cd ../frontend
 npm install
 npm run dev
 ```
@@ -105,3 +105,4 @@ Authorization: Token <token>
 Still ongoing features:
 - Product updates (PUT/PATCH endpoints)
 - Overview page (backend JSON works; UI still cooking)
+- Improvements in error handling (login)
