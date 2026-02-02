@@ -105,3 +105,4 @@ Authorization: Token <token>
 Still ongoing features:
 - Product updates (PUT/PATCH endpoints)
 - Overview page (backend JSON works; UI still cooking)
+- Improvements in error handling (login)
