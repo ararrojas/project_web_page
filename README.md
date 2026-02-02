@@ -76,7 +76,7 @@ Backend base URL: `http://127.0.0.1:8000/`
 From the repository root:
 
 ```bash
-cd frontend
+cd ../frontend
 npm install
 npm run dev
 ```
