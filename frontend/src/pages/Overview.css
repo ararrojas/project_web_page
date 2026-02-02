@@ -1,0 +1,49 @@
+.overview {
+    width: 100%;
+}
+
+.stats-row {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin: 20px 0 10px;
+    justify-content: center;
+}
+
+.stat-box {
+    border: 1px solid #E1E1D6;
+    background: #FCFCFA;
+    border-radius: 12px;
+    padding: 12px 16px;
+    min-width: 150px;
+}
+
+.stat-box-left {
+    background: #D3F68B;
+}
+
+.stat-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #6E6E68;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: 800;
+    color: #323232;
+}
+
+.chart-container {
+    height: 320px;
+    width: 100%;
+    margin-top: 40px;
+}
+
+.chart-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #6E6E68;
+    margin-top: 100px;
+    text-align: center;
+}

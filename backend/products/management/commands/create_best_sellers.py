@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand
 from products.models import Product
 from django.db import connection
+from products.choices import ProductChoices
 
 class Command(BaseCommand):
 
@@ -32,6 +33,7 @@ class Command(BaseCommand):
                 units_sold=units_sold[i],
                 is_active=True,
                 is_best_seller=True,
+                stock_status=ProductChoices.Status.IN_STOCK,
             )
             created += 1
         self.stdout.write(self.style.SUCCESS(f"Created {created} best seller products."))

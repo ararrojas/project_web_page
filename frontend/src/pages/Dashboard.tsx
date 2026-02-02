@@ -50,48 +50,54 @@ export default function Dashboard({ onLogout, isAuth }: Props) {
 
                 {isAuth ? (
                   <>
-                  <li className="menu-item sub-menu">
-                  <Link to="/overview">
-                    <span className="menu-icon">
-                    <i className="ri-search-line"></i>
-                    </span>
-                    <span className="menu-title">Overview</span>
-                  </Link>
-                </li>
+                    <li className={`menu-item sub-menu ${openMenus.overview ? "open" : ""}`}>
+                      <a href="#" onClick={(e) => { e.preventDefault(); toggleMenu("overview"); }}>
+                        <span className="menu-icon"><i className="ri-search-line" /></span>
+                        <span className="menu-title">Overview</span>
+                      </a>
 
-                  <li className={`menu-item sub-menu ${openMenus.products ? "open" : ""}`}>
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        toggleMenu("products");
-                      }}
-                    >
-                      <span className="menu-icon">
-                        <i className="ri-shopping-cart-fill" />
-                      </span>
-                      <span className="menu-title">Products</span>
-                      <span className="menu-suffix">
-                        <span className="badge primary">Hot</span>
-                      </span>
-                    </a>
+                      <div className="sub-menu-list">
+                        <ul>
+                          <li className="menu-item">
+                            <Link to="/overview"><span className="menu-title">Dashboard</span></Link>
+                          </li>
+                          <li className="menu-item">
+                            <Link to="/best_sellers">
+                              <span className="menu-title">Best Sellers</span>
+                              <i className="ri-star-line" style={{ color: "#facc15" }} />
+                            </Link>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
 
-                    <div className="sub-menu-list">
-                      <ul>
-                        <li className="menu-item">
-                          <Link to="/best_sellers">
-                            <span className="menu-title">Best Sellers</span>
-                            <i className="ri-star-line " style={{ color: "#facc15" }}></i>
-                          </Link>
-                        </li>
-                        <li className="menu-item">
-                          <Link to="/catalog">
-                            <span className="menu-title">Catalog</span>
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                  </li>
+                    <li className={`menu-item sub-menu ${openMenus.products ? "open" : ""}`}>
+                      <a
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          toggleMenu("products");
+                        }}
+                      >
+                        <span className="menu-icon">
+                          <i className="ri-shopping-cart-fill" />
+                        </span>
+                        <span className="menu-title">Products</span>
+                        <span className="menu-suffix">
+                          <span className="badge primary">Hot</span>
+                        </span>
+                      </a>
+
+                      <div className="sub-menu-list">
+                        <ul>
+                          <li className="menu-item">
+                            <Link to="/catalog">
+                              <span className="menu-title">Catalog</span>
+                            </Link>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
                   </>
                 ) : (
                   <li className="menu-item sub-menu">

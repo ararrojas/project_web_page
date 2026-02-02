@@ -10,7 +10,7 @@ def list_products() -> list[Product]:
 def list_best_sellers() -> list[Product]:
     return Product.objects.filter(is_active=True, is_best_seller=True).order_by("-created_at")
 
-def dashboard_overview(request):
+def calculate_stats(request):
     queryset = Product.objects.all().values()
     df = pd.DataFrame(list(queryset))
 

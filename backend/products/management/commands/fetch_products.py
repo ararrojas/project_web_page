@@ -3,7 +3,7 @@ from products.models import Product
 import pandas as pd
 import requests
 import numpy as np
-
+from products.choices import ProductChoices
 class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
@@ -35,6 +35,15 @@ class Command(BaseCommand):
                     is_active=True,
                     image_url=row['image']
                 ))
+                for product in products_to_create:
+                    stock_status = ProductChoices.Status.UNKNOWN
+                    if product.stock > 50:
+                        stock_status = ProductChoices.Status.IN_STOCK
+                    elif product.stock <= 10:
+                        stock_status = ProductChoices.Status.LOW_STOCK
+                    elif product.stock == 0:
+                         stock_status = ProductChoices.Status.OUT_OF_STOCK
+                    product.stock_status = stock_status
 
             Product.objects.bulk_create(products_to_create)
             self.stdout.write(self.style.SUCCESS(f'✅ {len(products_to_create)} products created successfully!'))

@@ -27,7 +27,7 @@ export function CatalogList() {
     useEffect(() => {
         const token = localStorage.getItem("token");
         if (!token) {
-            setError("No hay token. Inicia sesión.");
+            setError("Unauthorized");
             return;
         }
 
