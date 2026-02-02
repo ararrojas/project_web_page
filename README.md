@@ -1,4 +1,4 @@
-# BackToSoil (Django + Vite)
+# BackToSoil 🌱
 
 Fullstack project:
 - **Backend**: Django + Django REST Framework (Token Auth)
