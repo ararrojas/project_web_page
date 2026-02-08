@@ -6,6 +6,7 @@ from products.choices import ProductChoices
 class Product(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
+    category = models.CharField(max_length=20, choices=ProductChoices.Category.choices, default=ProductChoices.Category.UNKNOWN)
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     net_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     tax = models.DecimalField(max_digits=10, decimal_places=2, default=0)

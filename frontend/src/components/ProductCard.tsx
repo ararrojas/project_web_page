@@ -17,11 +17,6 @@ export default function ProductCard({ product, imageSrc }: { product: any, image
                         <p className="current-price">€{product?.price}</p>
                         <p className="old-price">€{(Number(product?.price) + 30).toFixed(2)}</p>
                     </div>
-
-                    <button className="cta" type="button">
-                        <i className="ri-shopping-cart-fill" />
-                        Add to Cart
-                    </button>
                 </div>
             </div>
         </div>

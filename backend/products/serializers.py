@@ -10,11 +10,24 @@ class ProductSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'description',
+            'category',
             'price',
             'stock',
             'is_active',
+            'is_favorite',
             'created_at',
             'updated_at',
         ]
-        read_only_fields = fields
 
+class ProductUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = [
+            'name',
+            'description',
+            'price',
+            'stock',
+            'is_active',
+            'is_favorite',
+        ]
+        

@@ -95,6 +95,11 @@ export default function Dashboard({ onLogout, isAuth }: Props) {
                               <span className="menu-title">Catalog</span>
                             </Link>
                           </li>
+                          <li className="menu-item">
+                            <Link to="/catalog/favorites">
+                              <span className="menu-title">Favorites</span>
+                            </Link>
+                          </li>
                         </ul>
                       </div>
                     </li>

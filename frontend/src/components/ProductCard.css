@@ -76,12 +76,15 @@ h2.pro-name {
     font-size: 34px;
     line-height: 1em;
     color: hsl(212, 21%, 14%);
+    max-width: 600px;
 }
 
 p.pro-des {
     color: hsl(228, 12%, 48%);
     line-height: 1.6em;
     text-align: justify;
+    max-width: 400px;
+    margin-left: 35px;
 }
 
 .price {

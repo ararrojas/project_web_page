@@ -2,7 +2,7 @@ import "./App.css";
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { LandingPage } from "./pages/Landing";
-import Dashboard from "./pages/Dashboard";
+import Sidebar from "./pages/Sidebar";
 import BestSellersList from "./pages/BestSellersList";
 import { Homepage } from "./pages/Homepage";
 import { About } from "./pages/About";
@@ -28,7 +28,7 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/login" element={<LandingPage onAuthSuccess={onAuthSuccess} />} />
-      <Route element={<Dashboard onLogout={onLogout} isAuth={isAuth} />}>
+      <Route element={<Sidebar onLogout={onLogout} isAuth={isAuth} />}>
         {/* Public */}
         <Route path="/" element={<Homepage />} />
         <Route path="/about" element={<About />} />
@@ -36,7 +36,7 @@ function AppRoutes() {
         <Route path="/overview" element={isAuth ? <Overview /> : <Navigate to="/login" replace />} />
         <Route path="/best_sellers" element={isAuth ? <BestSellersList /> : <Navigate to="/login" replace />} />
         <Route path="/catalog" element={isAuth ? <CatalogList /> : <Navigate to="/login" replace />} />
-        {/* Catch all */}
+        <Route path="/catalog/favorites" element={isAuth ? <CatalogList favorites={true} /> : <Navigate to="/login" replace />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>

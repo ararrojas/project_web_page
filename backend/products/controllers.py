@@ -3,9 +3,25 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse
 import pandas as pd
 from django.db.models import Sum
+from products.exceptions import ProductNotFound
+from products.choices import ProductChoices
 
-def list_products() -> list[Product]:
-    return Product.objects.all()
+def update_product(product_id: int, data: dict) -> Product:
+    product = Product.objects.filter(id=product_id).first()
+    if not product:
+        raise ProductNotFound(product_id)
+    for k, v in data.items():
+        setattr(product, k, v)
+    product.save()
+    return product
+
+def list_products(category) -> list[Product]:
+    products = Product.objects.all()
+    if category:
+        if category not in ProductChoices.Category.values:
+            raise ValidationError({"category": "Invalid category format"})
+        products = products.filter(category=category)
+    return products
 
 def list_best_sellers() -> list[Product]:
     return Product.objects.filter(is_active=True, is_best_seller=True).order_by("-created_at")

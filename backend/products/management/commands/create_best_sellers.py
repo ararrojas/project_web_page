@@ -28,6 +28,7 @@ class Command(BaseCommand):
             products = Product.objects.create(
                 name=names[i],
                 description=descriptions[i],
+                category=ProductChoices.Category.KIT,
                 price=prices[i],
                 stock=stocks[i],
                 units_sold=units_sold[i],

@@ -27,6 +27,7 @@ class Command(BaseCommand):
                 products_to_create.append(Product(
                     name=f"{np.random.choice(tea_types)} #{i+1}",
                     description=row['description'],
+                    category=ProductChoices.Category.HERBAL,
                     net_price=net,
                     tax=tax_val,
                     price=total,

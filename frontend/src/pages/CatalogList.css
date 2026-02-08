@@ -186,3 +186,23 @@ input[type="text"] {
         }
     }
 }
+
+.fav-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #181818;
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: #E93A37;
+    }
+}
+
+.description {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
