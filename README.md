@@ -36,7 +36,7 @@ python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-Install dependencies (if you have `requirements.txt`):
+Install dependencies:
 
 ```bash
 pip install -r requirements.txt
